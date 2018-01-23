@@ -3,6 +3,7 @@ import { initStore } from '../store'
 import withRedux from 'next-redux-wrapper'
 import PropTypes from 'prop-types'
 import { kea } from 'kea'
+import Link from 'next/link'
 
 @kea({
   path: () => ['kea'],
@@ -35,6 +36,11 @@ class App extends React.Component {
         <p>Double Counter: {this.props.doubleCounter}</p>
         <button type='button' onClick={() => this.actions.increment(1)}>Increment</button>
         <button type='button' onClick={() => this.actions.decrement(1)}>Decrement</button>
+
+        <ul>
+          <li><Link href='/b' as='/a'><a>a</a></Link></li>
+          <li><Link href='/a' as='/b'><a>b</a></Link></li>
+        </ul>
       </div>
     )
   }
