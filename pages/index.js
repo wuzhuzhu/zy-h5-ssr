@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { kea } from 'kea'
 import Link from 'next/link'
 
+import MainLayout from '../components/layouts/main-layout'
+
 @kea({
   path: () => ['kea'],
   actions: () => ({
@@ -32,7 +34,7 @@ import Link from 'next/link'
 class App extends React.Component {
   render () {
     return (
-      <div>
+      <MainLayout>
         <p>Double Counter: {this.props.doubleCounter}</p>
         <button type='button' onClick={() => this.actions.increment(1)}>Increment</button>
         <button type='button' onClick={() => this.actions.decrement(1)}>Decrement</button>
@@ -41,7 +43,7 @@ class App extends React.Component {
           <li><Link href='/a' as='/a'><a>a</a></Link></li>
           <li><Link href='/b' as='/b'><a>b</a></Link></li>
         </ul>
-      </div>
+      </MainLayout>
     )
   }
 }
