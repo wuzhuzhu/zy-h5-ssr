@@ -4,6 +4,7 @@ import Head from 'next/head'
 
 export default class extends React.PureComponent {
   componentDidMount () {
+    console.warn('开始注册sw流程')
     if ('serviceWorker' in navigator) {
       // Your service-worker.js *must* be located at the top-level directory relative to your site.
       // It won't be able to control pages unless it's located at the same level or higher than them.
@@ -43,15 +44,26 @@ export default class extends React.PureComponent {
       });
     }
 
+  /*  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(registration => {
+          console.log('service worker registration successful')
+        })
+        .catch(err => {
+          console.warn('service worker registration failed', err.message)
+        })
+    }*/
+
   }
   render () {
     return (
       <div>
         <Head>
-          <title>{ title }</title>
+          <title>{ this.props.title }</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         </Head>
-        { children }
+        { this.props.children }
       </div>
     )
   }
