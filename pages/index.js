@@ -38,8 +38,8 @@ class App extends React.Component {
         <button type='button' onClick={() => this.actions.decrement(1)}>Decrement</button>
 
         <ul>
-          <li><Link href='/b' as='/a'><a>a</a></Link></li>
-          <li><Link href='/a' as='/b'><a>b</a></Link></li>
+          <li><Link href='/a' as='/a'><a>a</a></Link></li>
+          <li><Link href='/b' as='/b'><a>b</a></Link></li>
         </ul>
       </div>
     )
