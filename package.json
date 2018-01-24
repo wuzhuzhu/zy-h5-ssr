@@ -7,10 +7,11 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "kea": "^0.27.3",
+    "dva-no-router": "^1.0.3",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
+    "lodash": "^4.17.4",
     "next": "^4.1.4",
     "next-redux-wrapper": "^1.3.4",
     "prop-types": "^15.6.0",
