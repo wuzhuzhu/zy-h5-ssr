@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import { kea } from 'kea'
 
 @kea({
-  path: () => ['kea', 'test'],
+  key: props => props.id,
+  path: (key) => ['kea', 'counter', key],
   actions: () => ({
-    increment: amount => ({ amount }),
-    decrement: amount => ({ amount })
+    increment: (amount)=> ({ amount }),
+    decrement: (amount)=> ({ amount })
   }),
-  reducers: ({ actions }) => ({
+  reducers: ({ actions, key, props }) => ({
     counter: [
       0,
       PropTypes.number,
       {
-        [actions.increment]: (state, payload) => state + payload.amount,
-        [actions.decrement]: (state, payload) => state - payload.amount
+        [actions.increment]: (state, payload) => payload.key === key ? state + payload.amount : state,
+        [actions.decrement]: (state, payload) => payload.key === key ? state - payload.amount : state
       }
     ]
   }),
@@ -31,11 +32,16 @@ class Counter extends React.Component {
 
   }
   render () {
+    const { counter, doubleCounter } = this.props
+    const { increment, decrement } = this.actions
     return (
       <div>
-        <p>Double Counter: {this.props.doubleCounter}</p>
-        <button type='button' onClick={() => this.props.actions.increment(1)}>Increment</button>
-        <button type='button' onClick={() => this.props.actions.decrement(1)}>Decrement</button>
+        Count: {counter}
+        <br />
+        Doublecount: {doubleCounter}
+        <br />
+        <button onClick={() => increment(1)}>Increment</button>
+        <button onClick={() => decrement(1)}>Decrement</button>
       </div>
     )
   }
