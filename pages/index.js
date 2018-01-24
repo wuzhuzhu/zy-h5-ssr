@@ -1,14 +1,15 @@
-import Link from 'next/link';
 import app from '../conf/get-dva-app'
 import { connect } from 'dva-no-router';
 
+// page component and model
 import IndexPage from '../components/pages/index'
 import IndexModel from '../models/index-page/index'
 
-//actions
+// import actions
 import { addString } from '../models/index-page/actions'
 import { get } from 'lodash'
 
+// container part
 @connect(mapStateToProps, {
   addString,
 })
@@ -24,6 +25,7 @@ function mapStateToProps(state) {
   };
 }
 
+// registe model and start dva.
 export default function () {
   app.router(() => {
     return <Container />;
