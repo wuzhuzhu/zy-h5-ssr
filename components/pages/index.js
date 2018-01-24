@@ -2,12 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 
 import MainLayout from '../layouts/main-layout'
+import Counter from '../gears/counter'
 
 export default (props) => (
   <MainLayout>
-    <p>Double Counter: {props.doubleCounter}</p>
-    <button type='button' onClick={() => props.actions.increment(1)}>Increment</button>
-    <button type='button' onClick={() => props.actions.decrement(1)}>Decrement</button>
+    <Counter {...props} key="1" />
+    <Counter {...props} key="2" />
     <ul>
       <li><Link href='/a' as='/a'><a>a</a></Link></li>
       <li><Link href='/b' as='/b'><a>b</a></Link></li>
