@@ -1,23 +1,21 @@
 import dva from 'dva-no-router';
-// redux persist
-import storage from 'redux-persist/lib/storage'
-import { persistStore, persistReducer } from 'redux-persist'
-import { PersistGate } from 'redux-persist/lib/integration/react'
 
-const persistConfig = {
-  key: 'root',
-  storage: storage,
-}
+const isServer = typeof window === 'undefined'
 
 // 1. Initialize
 const app = dva({
+  initialState: isServer ? undefined : window.initState,
   onError(error) {
     // console.error(error)
     Toast.fail(error.message)
   },
   onReducer: reducer => {   // persist reducer enhencer
     return (state, action) => {
-      return persistReducer(persistConfig, reducer)(state, action);
+      const newState = reducer(state, action);
+      if (!isServer) {
+        window.initState = newState
+      }
+      return newState
       // 由于 dva 同步了 routing 数据，所以需要把这部分还原
     }
   },
@@ -35,8 +33,6 @@ export default (PageContainer, pageModel) => {
     app.model(pageModel)
   }
   catch(e) {}
-
-  // let persistor = persistStore(app._store)
 
   app.router(() => {
     return (
