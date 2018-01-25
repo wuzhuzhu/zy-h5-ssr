@@ -1,4 +1,4 @@
-import app from '../conf/get-dva-app'
+import getDvaPage from '../conf/get-dva-app'
 import { connect } from 'dva-no-router';
 
 // page component and model
@@ -26,18 +26,4 @@ function mapStateToProps(state) {
 }
 
 // registe model and start dva.
-export default function () {
-  app.router(() => {
-    return <Container />;
-  });
-
-  try {
-    app.model(IndexModel)
-  }
-  catch(e) {}
-
-  const Component = app.start();
-  return (
-    <Component />
-  );
-}
+export default getDvaPage(Container, IndexModel)

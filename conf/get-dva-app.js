@@ -13,4 +13,15 @@ const app = dva({
 
 // 3. Model
 
-export default app
+export default (PageContainer, pageModel) => {
+  app.router(() => {
+    return <PageContainer />;
+  });
+
+  try {
+    app.model(pageModel)
+  }
+  catch(e) {}
+
+  return app.start();
+}

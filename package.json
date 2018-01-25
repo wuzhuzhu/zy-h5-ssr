@@ -19,6 +19,7 @@
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-persist": "^5.5.0",
     "reselect": "^3.0.1",
     "sw-precache-webpack-plugin": "^0.11.4"
   },
